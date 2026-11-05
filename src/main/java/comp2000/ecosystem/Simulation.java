@@ -14,7 +14,7 @@ public abstract class Simulation {
 
     public void step() {
         for (Agent agent : agents) {
-            agent.move(grid);
+            agent.move(grid, agents);
         }
         applyRules();
     }

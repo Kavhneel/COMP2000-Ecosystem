@@ -1,14 +1,12 @@
 package comp2000.ecosystem;
 
-
-
+import java.util.List;
 
 public class Agent {
 
     private int x;
     private int y;
     private final Species species;
-
 
     private MovementStrategy movementStrategy;
 
@@ -19,8 +17,8 @@ public class Agent {
         this.movementStrategy = new RandomMovementStrategy();
     }
 
-    public void move(Grid grid) {
-        Cell target = movementStrategy.chooseNextCell(this, grid);
+    public void move(Grid grid, List<Agent> agents) {
+        Cell target = movementStrategy.chooseNextCell(this, grid, agents);
 
         if (target != null) {
             this.x = target.getX();
@@ -35,6 +33,7 @@ public class Agent {
     public boolean isNeighbourOf(Agent other) {
         int dx = Math.abs(this.x - other.x);
         int dy = Math.abs(this.y - other.y);
+
         return dx <= 1 && dy <= 1 && !(dx == 0 && dy == 0);
     }
 
