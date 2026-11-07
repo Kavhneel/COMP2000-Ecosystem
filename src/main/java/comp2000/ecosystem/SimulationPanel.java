@@ -24,9 +24,23 @@ public class SimulationPanel extends JPanel {
         int cellHeight = getHeight() / grid.getHeight();
 
         List<Agent> agents = simulation.getAgents();
+
         for (Agent agent : agents) {
-            g.setColor(agent.getSpecies() == Species.PREY ? Color.GREEN : Color.RED);
-            g.fillRect(agent.getX() * cellWidth, agent.getY() * cellHeight, cellWidth, cellHeight);
+            g.setColor(agent.getSpecies() == Species.PREY
+                    ? Color.GREEN : Color.RED);
+
+            g.fillRect(
+                    agent.getX() * cellWidth,
+                    agent.getY() * cellHeight,
+                    cellWidth,
+                    cellHeight
+            );
         }
+
+        // Display population statistics
+        g.setColor(Color.WHITE);
+        g.drawString("Prey: " + simulation.getPreyCount(), 10, 20);
+        g.drawString("Predators: " + simulation.getPredatorCount(), 10, 40);
+        g.drawString("Total population: " + simulation.getTotalPopulation(), 10, 60);
     }
 }

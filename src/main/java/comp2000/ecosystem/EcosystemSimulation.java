@@ -1,3 +1,4 @@
+
 package comp2000.ecosystem;
 
 import java.util.ArrayList;
@@ -53,5 +54,24 @@ public class EcosystemSimulation extends Simulation {
                 }
             }
         }
+    }
+
+    // Count the remaining prey using Streams
+    public long getPreyCount() {
+        return agents.stream()
+                .filter(agent -> agent.getSpecies() == Species.PREY)
+                .count();
+    }
+
+    // Count the remaining predators using Streams
+    public long getPredatorCount() {
+        return agents.stream()
+                .filter(agent -> agent.getSpecies() == Species.PREDATOR)
+                .count();
+    }
+
+    // Count the total population using Streams
+    public long getTotalPopulation() {
+        return agents.stream().count();
     }
 }
